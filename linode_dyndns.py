@@ -154,7 +154,16 @@ def _updateDynDNS(domainID, resourceID, target):
 
 def _main():
 
-  parser = argparse.ArgumentParser(description='Dynamic DNS updater for Linode-hosted DNS.')
+  scriptName = sys.argv[0]
+  epilogText = 'Examples:'
+  epilogText += '\n' + scriptName + ' 1A4FB63C245D domain.net subdomain'
+  epilogText += '\n' + scriptName + ' -ip 1.2.3.4 1A4FB63C245D 123456 subdomain'
+
+  parser = argparse.ArgumentParser(
+    formatter_class = argparse.RawDescriptionHelpFormatter,
+    description = 'Dynamic DNS updater for Linode-hosted DNS.',
+    epilog = epilogText
+  )
   parser.add_argument('apiKey', type=str, help='Linode API key.')
   parser.add_argument('domainID', type=str, help='The ID of the domain to update. Can be a hostname or a numeric Linode Domain ID.')
   parser.add_argument('resourceID', type=str, help='The ID of the resource to update. Must be associated with the supplied domain ID. Can be a hostname or a numeric Linode Resource ID.')
