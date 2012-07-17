@@ -16,18 +16,18 @@ from urllib.request import urlopen
 import argparse, configparser, http.client, json, socket, sys
 
 # Should point to a service on the Internet that returns the requester's IP address in plain text.
-_IP_FINDER_URL = 'http://icanhazip.com'
+_IP_FINDER_URL = 'http://ipv4.icanhazip.com'
 
 # Will be populated by main() from commandline arguments.
 _LINODE_API_KEY = ''
 
 def _handleError(message, ex=None):
 
-  print('Error: ' + message)
+  sys.stderr.write('Error: ' + message + '\n')
   if (ex is not None):
-    print('Root cause:')
-    print('\t' + str(ex))
-  print('Terminating.')
+    sys.stderr.write('Root cause:\n')
+    sys.stderr.write('\t' + str(ex) + '\n')
+  sys.stderr.write('Terminating.\n')
   sys.exit(-1)
 
 
